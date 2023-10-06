@@ -1,0 +1,94 @@
+[Version]
+Signature="$Windows NT$"
+DriverPackageType=PlugAndPlay
+DriverPackageDisplayName=%DESC%
+Class=USB
+ClassGUID={36fc9e60-c465-11cf-8056-444553540000}
+Provider=%Altera%
+DriverVer=08/16/2017,2.12.28
+
+[Manufacturer]
+%Altera%=AlteraHw,NTARM64
+
+[SourceDisksNames]
+1=%DriversDisk%,,,
+
+[SourceDisksFiles]
+usbblstr.sys = 1
+usbblstrui.dll = 1
+usbblstr.dll = 1
+usbblstrlang.dll = 1
+
+[DestinationDirs]
+DefaultDestDir = 12
+Installer_CopyFiles = 11
+
+[AlteraHw.NTARM64]
+%USB\VID_09FB&PID_6001.DeviceDesc%=AlteraUSBBlaster.NT,USB\VID_09FB&PID_6001
+%USB\VID_09FB&PID_6002.DeviceDesc%=AlteraUSBBlaster.NT,USB\VID_09FB&PID_6002
+%USB\VID_09FB&PID_6003.DeviceDesc%=AlteraUSBBlaster.NT,USB\VID_09FB&PID_6003
+%USB\VID_09FB&PID_6004.DeviceDesc%=AlteraUSBBlaster.NT,USB\VID_09FB&PID_6004
+%USB\VID_09FB&PID_6005.DeviceDesc%=AlteraUSBBlaster.NT,USB\VID_09FB&PID_6005
+%USB\VID_09FB&PID_6006.DeviceDesc%=AlteraUSBBlaster.NT,USB\VID_09FB&PID_6006
+%USB\VID_09FB&PID_6007.DeviceDesc%=AlteraUSBBlaster.NT,USB\VID_09FB&PID_6007
+%USB\VID_09FB&PID_6008.DeviceDesc%=AlteraUSBBlaster.NT,USB\VID_09FB&PID_6008
+%USB\VID_09FB&PID_6009.DeviceDesc%=AlteraUSBBlaster.NT,USB\VID_09FB&PID_6009
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+[AlteraUSBBlaster.NT]
+CopyFiles=AlteraUSBBlaster.NT.Copy,Installer_CopyFiles
+AddReg=AlteraUSBBlaster.NT.AddReg
+
+[AlteraUSBBlaster.NT.Copy]
+usbblstr.sys
+
+[Installer_CopyFiles]
+usbblstrui.dll
+usbblstrlang.dll
+usbblstr.dll
+
+[AlteraUSBBlaster.NT.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,usbblstr.sys
+HKR,,EnumPropPages32,,"usbblstrui.dll,FTBUSUIPropPageProvider"
+
+[AlteraUSBBlaster.NT.Services]
+AddService = AlteraUSBBlaster, 0x00000002, AlteraUSBBlaster.NT.AddService
+
+[AlteraUSBBlaster.NT.AddService]
+DisplayName = %SvcDesc%
+ServiceType = 1 ; SERVICE_KERNEL_DRIVER
+StartType = 3 ; SERVICE_DEMAND_START
+ErrorControl = 1 ; SERVICE_ERROR_NORMAL
+ServiceBinary = %10%\system32\drivers\usbblstr.sys
+LoadOrderGroup = Base
+AddReg = AlteraUSBBlaster.NT.AddService.AddReg
+
+[AlteraUSBBlaster.NT.AddService.AddReg]
+;HKR,Parameters,"LocIds",1,31,00,00,00,32,00,00,00,00
+;HKR,Parameters,"RetryResetCount",0x10001,50
+
+[AlteraUSBBlaster.NT.HW]
+AddReg=AlteraUSBBlaster.NT.HW.AddReg
+
+[AlteraUSBBlaster.NT.HW.AddReg]
+HKR,,"ConfigData",0x00010001,16
+
+[Strings]
+Altera="Altera"
+DESC="Altera USB-Blaster Device Driver Package"
+DriversDisk="Altera USB-Blaster Device Driver Disk"
+USB\VID_09FB&PID_6001.DeviceDesc="Altera USB-Blaster"
+USB\VID_09FB&PID_6002.DeviceDesc="Altera Cubic Cyclonium"
+USB\VID_09FB&PID_6003.DeviceDesc="Altera Nios II Evaluation Board"
+USB\VID_09FB&PID_6004.DeviceDesc="Altera Cyclone III EP3C25 Starter Kit"
+USB\VID_09FB&PID_6005.DeviceDesc="Altera Cyclone III EP3C120 Development Kit"
+USB\VID_09FB&PID_6006.DeviceDesc="Altera Stratix III EP3SL150 Development Kit"
+USB\VID_09FB&PID_6007.DeviceDesc="Altera Stratix III EP3SL340 Development Kit"
+USB\VID_09FB&PID_6008.DeviceDesc="Altera Nios Embedded Evaluation Kit"
+USB\VID_09FB&PID_6009.DeviceDesc="Altera Nios Development Kit, Cyclone III Edition"
+WINUN="Software\Microsoft\Windows\CurrentVersion\Uninstall"
+SvcDesc="Altera USB-Blaster Device Driver"
+ClassName="USB"
