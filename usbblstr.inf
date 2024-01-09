@@ -16,7 +16,7 @@ DriverVer=08/16/2017,2.12.28
 [SourceDisksFiles]
 usbblstr.sys = 1
 usbblstrui.dll = 1
-usbblstr.dll = 1
+usbblstr64.dll = 1
 usbblstrlang.dll = 1
 
 [DestinationDirs]
@@ -47,7 +47,7 @@ usbblstr.sys
 [Installer_CopyFiles]
 usbblstrui.dll
 usbblstrlang.dll
-usbblstr.dll
+usbblstr64.dll
 
 [AlteraUSBBlaster.NT.AddReg]
 HKR,,DevLoader,,*ntkern
