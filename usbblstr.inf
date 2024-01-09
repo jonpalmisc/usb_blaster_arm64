@@ -4,7 +4,7 @@ DriverPackageType=PlugAndPlay
 DriverPackageDisplayName=%DESC%
 Class=USB
 ClassGUID={36fc9e60-c465-11cf-8056-444553540000}
-Provider=%Altera%
+Provider="github.com/jonpalmisc/usb_blaster_arm64"
 DriverVer=08/16/2017,2.12.28
 
 [Manufacturer]
